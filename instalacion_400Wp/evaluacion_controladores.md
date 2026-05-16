@@ -16,9 +16,7 @@ Modelo: Tensite EM200-PH
 
 La futura instalación considera dos paneles de 200 W:
 
-\[
-P_{FV}=2 \times 200W = 400Wp
-\]
+P_FV = 2 × 200 W = 400 Wp
 
 ## Conexión en serie
 
