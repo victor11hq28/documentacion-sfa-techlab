@@ -1,16 +1,20 @@
 # Checklist técnico según NTP 399.403
 
+## Estado general
+
+Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión inicial de módulos fotovoltaicos ya fue realizada en laboratorio mediante registro de placa del panel Tensite EM200-PH. La verificación del nuevo controlador MPPT queda pendiente hasta recibir el equipo solicitado.
+
 ## Módulos fotovoltaicos
 
-- [ ] Verificar marca y modelo.
-- [ ] Registrar potencia máxima, Pmax.
-- [ ] Registrar voltaje de circuito abierto, Voc.
-- [ ] Registrar corriente de cortocircuito, Isc.
-- [ ] Registrar voltaje de máxima potencia, Vmp.
-- [ ] Registrar corriente de máxima potencia, Imp.
+- [x] Verificar marca y modelo: Tensite EM200-PH.
+- [x] Registrar potencia máxima, Pmax: 200 W por módulo.
+- [x] Registrar voltaje de circuito abierto, Voc: 45.4 V.
+- [x] Registrar corriente de cortocircuito, Isc: 5.80 A.
+- [x] Registrar voltaje de máxima potencia, Vmp: 36.7 V.
+- [x] Registrar corriente de máxima potencia, Imp: 5.65 A.
 - [ ] Revisar número de serie.
-- [ ] Revisar estado físico del módulo.
-- [ ] Revisar características de conexión.
+- [x] Revisar estado físico del módulo.
+- [x] Revisar características de conexión: caja de conexiones y conectores tipo MC4.
 
 ## Controlador de carga
 
@@ -23,6 +27,8 @@
 - [ ] Revisar protección contra retorno de corriente.
 - [ ] Revisar valores de corte y reconexión.
 - [ ] Revisar señalización mediante LEDs o pantalla.
+
+**Nota:** Los controladores PWM disponibles fueron revisados preliminarmente y presentan limitaciones para un arreglo de 400 Wp. Se indicó que se solicitó un controlador Victron BlueSolar MPPT 100/30, por lo que la validación final queda pendiente hasta contar con el equipo o su ficha técnica completa.
 
 ## Baterías
 
