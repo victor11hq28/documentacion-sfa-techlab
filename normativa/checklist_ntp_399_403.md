@@ -9,12 +9,21 @@ Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión 
 - [x] Verificar marca y modelo: Tensite EM200-PH.
 - [x] Registrar potencia máxima, Pmax: 200 W por módulo.
 - [x] Registrar voltaje de circuito abierto, Voc: 45.4 V.
-- [x] Registrar corriente de cortocircuito, Isc: 5.80 A.
+- [x] Registrar corriente de cortocircuito, Isc: 5.80 A según sticker del módulo / 5.81 A según ficha técnica.
 - [x] Registrar voltaje de máxima potencia, Vmp: 36.7 V.
-- [x] Registrar corriente de máxima potencia, Imp: 5.65 A.
-- [ ] Revisar número de serie.
-- [x] Revisar estado físico del módulo.
+- [x] Registrar corriente de máxima potencia, Imp: 5.65 A según sticker del módulo / 5.45 A según ficha técnica.
+- [x] Registrar coeficiente térmico de Voc: -0.29506 %/°C.
+- [x] Registrar coeficiente térmico de Pmax: -0.38001 %/°C.
+- [x] Registrar coeficiente térmico de Isc: +0.08558 %/°C.
+- [ ] Registrar número de serie del panel 1.
+- [ ] Registrar número de serie del panel 2.
+- [x] Revisar estado físico del módulo: paneles nuevos, sin daños visibles reportados.
 - [x] Revisar características de conexión: caja de conexiones y conectores tipo MC4.
+- [ ] Realizar curva I-V del panel 1.
+- [ ] Realizar curva I-V del panel 2.
+- [ ] Comparar valores medidos de Voc, Isc, Vmp e Imp con los datos de placa y ficha técnica.
+
+**Nota:** La ficha técnica completa del módulo Tensite EM200-PH ya fue revisada y permite reemplazar el coeficiente térmico asumido por el valor real de Voc. Las diferencias menores entre el sticker del módulo y la ficha técnica, especialmente en Isc e Imp, deberán verificarse mediante la medición de curva I-V.
 
 ## Controlador de carga
 
