@@ -6,17 +6,43 @@ El dimensionamiento energético del SFA de 400 Wp se realiza considerando el mes
 
 Los valores de 5 a 6 HSP observables en temporada de verano se consideran únicamente para evaluar excedentes de generación. Estos valores no deben usarse para definir la autonomía mínima del sistema, ya que podrían sobredimensionar la expectativa de generación disponible durante invierno.
 
+## Enfoque de carga variable
+
+El SFA no se asigna a una carga fija única. Su función prevista es alimentar proyectos del Tech Lab según disponibilidad energética, siempre dentro de los límites eléctricos y energéticos del sistema.
+
+Por ello, cada proyecto que se conecte deberá estimar como mínimo:
+
+- potencia de operación;
+- tiempo diario de uso;
+- energía diaria requerida;
+- tipo de alimentación requerida: DC o AC mediante inversor;
+- condición de uso: continua, intermitente o temporal.
+
+La conexión de cargas deberá evaluarse en función de la energía disponible del sistema, el estado del banco de baterías y la temporada de operación. En invierno se deberá usar como referencia el escenario de diseño con HSP crítica; en verano podrá existir mayor disponibilidad energética.
+
 ## Generación estimada en mes crítico
 
-| Parámetro | Valor |
-|---|---:|
-| Potencia FV instalada | 400 Wp |
-| HSP de diseño | 1.44 h |
-| Energía bruta diaria | 400 W × 1.44 h = 576 Wh/día |
-| Eficiencia preliminar del sistema | 70 % |
-| Energía útil estimada | 576 Wh/día × 0.70 = 403 Wh/día |
+La energía bruta diaria del arreglo fotovoltaico se calcula como:
 
-Con una HSP de diseño de 1.44 h, el sistema de 400 Wp podría entregar aproximadamente 403 Wh/día útiles en el mes crítico. Esto equivale a sostener una carga continua promedio cercana a 16.8 W durante 24 h.
+E_FV,bruta = P_FV × HSP
+
+Para el arreglo de 400 Wp:
+
+E_FV,bruta = 400 Wp × 1.44 h = 576 Wh/día
+
+La energía útil disponible para cargas no se fija como un valor absoluto, sino que se expresa en función de una eficiencia global preliminar η. Esta eficiencia representa pérdidas por controlador, batería, cableado, temperatura, suciedad y conversión DC/DC o DC/AC.
+
+E_útil = E_FV,bruta × η
+
+E_útil = 576 × η
+
+| η global asumida | Energía útil estimada |
+|---:|---:|
+| 0.60 | 345.6 Wh/día |
+| 0.70 | 403.2 Wh/día |
+| 0.80 | 460.8 Wh/día |
+
+Para cálculos preliminares se puede usar η = 0.70 como caso base, lo que entrega aproximadamente 403 Wh/día útiles en el mes crítico. Este valor no debe entenderse como un límite fijo, sino como una referencia de diseño dependiente de la eficiencia real del sistema.
 
 ## Autonomía objetivo
 
@@ -37,24 +63,25 @@ La capacidad mínima del banco de baterías se estima mediante:
 
 Capacidad del banco [Ah] = Energía diaria de la carga [Wh/día] × días de autonomía ÷ (Voltaje del banco × profundidad de descarga × eficiencia de batería)
 
-Con los supuestos preliminares:
+Si se toma como energía diaria de referencia la energía útil del mes crítico:
 
-Capacidad [Ah] = E_carga × 1.5 ÷ (24 × 0.50 × 0.85)
+E_carga,diseño = 576 × η
 
-Capacidad [Ah] = E_carga × 1.5 ÷ 10.2
+Entonces:
 
-## Estimación preliminar según carga continua
+Capacidad [Ah] = (576 × η × 1.5) ÷ (24 × 0.50 × 0.85)
 
-Como aún falta confirmar el consumo real de la carga crítica, se evalúan escenarios de potencia continua.
+Capacidad [Ah] = (576 × η × 1.5) ÷ 10.2
 
-| Carga continua | Consumo diario | Capacidad mínima estimada |
-|---:|---:|---:|
-| 5 W | 120 Wh/día | 17.6 Ah @ 24 V |
-| 10 W | 240 Wh/día | 35.3 Ah @ 24 V |
-| 15 W | 360 Wh/día | 52.9 Ah @ 24 V |
-| 20 W | 480 Wh/día | 70.6 Ah @ 24 V |
+Capacidad [Ah] ≈ 84.7 × η
 
-Para una carga crítica continua entre 10 W y 15 W, se recomienda evaluar un banco comercial de 24 V entre 40 Ah y 60 Ah. Si la carga se aproxima a 20 W continuos, conviene considerar un banco cercano a 24 V 80 Ah o superior.
+| η global asumida | Capacidad mínima estimada para 1.5 días |
+|---:|---:|
+| 0.60 | 50.8 Ah @ 24 V |
+| 0.70 | 59.3 Ah @ 24 V |
+| 0.80 | 67.8 Ah @ 24 V |
+
+Con η = 0.70 como caso base, la capacidad mínima estimada es aproximadamente 59.3 Ah a 24 V. Por ello, un banco comercial de 24 V y 60 Ah resulta una configuración base razonable, siempre que el tipo de batería y sus parámetros de carga sean compatibles con el controlador seleccionado.
 
 ## Configuración del banco de baterías
 
@@ -76,13 +103,15 @@ La energía excedente se recorta o no se aprovecha, lo cual es normal en sistema
 
 El sistema se dimensiona para el mes crítico. En verano, con 5 a 6 HSP, la generación disponible será considerablemente mayor. Cuando el banco de baterías alcance su estado de carga objetivo, el controlador limitará la potencia tomada del arreglo FV.
 
-Como mejora futura, se puede evaluar el uso de cargas secundarias no críticas, activadas únicamente cuando el banco de baterías se encuentre suficientemente cargado. Estas cargas no deben comprometer la autonomía de la carga principal.
+Como mejora futura, se puede evaluar el uso de cargas secundarias no críticas, activadas únicamente cuando el banco de baterías se encuentre suficientemente cargado. Estas cargas no deben comprometer la autonomía de la carga principal ni superar los límites eléctricos del controlador, baterías, inversor o protecciones.
 
 ## Pendientes
 
-- Confirmar consumo diario de la carga crítica.
+- Confirmar modelo final del controlador MPPT solicitado.
 - Definir modelo final de baterías.
 - Confirmar si se comprará un banco nuevo de baterías.
 - Verificar estado de las baterías actualmente disponibles y descartar unidades obsoletas.
 - Definir cantidad de baterías y configuración serie/paralelo.
 - Verificar parámetros de carga recomendados por el fabricante: absorción, flotación, corriente máxima de carga y ecualización.
+- Estimar potencia, tiempo de uso y energía diaria de cada proyecto que se conecte al SFA.
+- Verificar que cada carga conectada se mantenga dentro de la energía disponible y de los límites eléctricos del sistema.
