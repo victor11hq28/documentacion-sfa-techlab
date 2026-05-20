@@ -46,10 +46,14 @@ Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión 
 
 - [x] Definir potencia FV instalada: 400 Wp.
 - [x] Definir HSP crítica de diseño: 1.44 h.
+- [x] Definir energía bruta diaria en mes crítico: 576 Wh/día.
+- [x] Expresar energía útil disponible en función de la eficiencia global: E_útil = 576 × η.
 - [x] Definir tensión nominal del banco: 24 V, por compatibilidad con el inversor Victron Phoenix 24/375.
 - [x] Definir autonomía objetivo preliminar: 1.5 días.
 - [x] Considerar que el excedente de verano será recortado por el controlador si la batería está cargada.
-- [ ] Confirmar consumo diario de la carga crítica.
+- [x] Definir que el SFA alimentará cargas variables de proyectos Tech Lab, no una carga crítica fija única.
+- [ ] Estimar potencia, tiempo de uso y energía diaria de cada proyecto que se conecte al SFA.
+- [ ] Verificar que cada carga conectada se mantenga dentro de la energía disponible y de los límites eléctricos del sistema.
 - [ ] Verificar tipo de batería final: AGM / GEL / litio / otra.
 - [ ] Definir si se comprará un banco nuevo de baterías.
 - [ ] Evaluar estado de las baterías actuales y descartar unidades obsoletas.
@@ -65,7 +69,7 @@ Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión 
 - [ ] Revisar recomendaciones de absorción, flotación y ecualización.
 - [ ] Evitar mezclar baterías nuevas con baterías antiguas u obsoletas.
 
-**Nota:** El banco de baterías debe ser de 24 V debido al uso del inversor Victron Phoenix 24/375. Si se emplean baterías de 12 V, se requiere al menos una conexión en serie de dos unidades. La capacidad final en Ah queda pendiente hasta confirmar el consumo diario de la carga crítica y el modelo de batería seleccionado.
+**Nota:** El banco de baterías debe ser de 24 V debido al uso del inversor Victron Phoenix 24/375. Si se emplean baterías de 12 V, se requiere al menos una conexión en serie de dos unidades. La capacidad final en Ah queda pendiente hasta confirmar el modelo de batería seleccionado y el criterio de eficiencia global η adoptado para el balance energético.
 
 ## Cableado y protecciones
 
