@@ -88,20 +88,46 @@ La placa del panel indica una tolerancia de Voc de ±4 %. Considerando el caso m
 | Voc máximo de un panel a 10 °C | 47.22 V × 1.044259 = 49.31 V |
 | Voc máximo de dos paneles en serie a 10 °C | 2 × 49.31 V = 98.61 V |
 
-Con el escenario considerado, dos paneles en serie podrían alcanzar aproximadamente 94.82 V sin tolerancia de placa, o 98.61 V considerando tolerancia positiva. Por tanto, el controlador MPPT 100/30 cumple de forma preliminar para una temperatura mínima de celda de 10 °C, pero queda con margen reducido frente al límite de 100 V.
+Con el escenario considerado, dos paneles en serie podrían alcanzar aproximadamente 94.82 V sin tolerancia de placa, o 98.61 V considerando tolerancia positiva. Por tanto, el controlador MPPT 100/30 cumple para una temperatura de celda de 10 °C, condición conservadora para Lima, aunque queda con margen reducido frente al límite de 100 V.
 
 ## Controladores PWM revisados
 
 Los controladores PWM disponibles presentan limitaciones para usar los dos paneles de 200 W en un único sistema, debido a límites de corriente, potencia y tensión de entrada FV.
 
-## Controlador MPPT solicitado
+## Controlador MPPT seleccionado
 
-Se indicó que se solicitó un controlador Victron BlueSolar MPPT 100/30.
+El controlador seleccionado para la instalación es el Victron SmartSolar MPPT 100/30.
 
-Este controlador resulta viable de forma preliminar para dos paneles en serie y banco de 24 V. Sin embargo, el margen de tensión frente al límite de 100 V debe tratarse como un punto crítico, ya que el arreglo puede aproximarse al límite cuando se considera tolerancia positiva de Voc e incremento por baja temperatura.
+| Parámetro | Valor según ficha técnica |
+|---|---:|
+| Tensión de batería | Selección automática 12/24 V |
+| Corriente nominal de carga | 30 A |
+| Potencia FV nominal a 12 V | 440 W |
+| Potencia FV nominal a 24 V | 880 W |
+| Tensión máxima de circuito abierto FV | 100 V |
+| Corriente máxima de cortocircuito FV | 35 A |
+| Eficiencia máxima | 98 % |
+| Absorción predeterminada | 14.4 V / 28.8 V, ajustable |
+| Flotación predeterminada | 13.8 V / 27.6 V, ajustable |
 
-Con el escenario de 10 °C y coeficiente térmico real del módulo, dos paneles en serie podrían alcanzar aproximadamente 94.82 V sin tolerancia de placa, o 98.61 V considerando tolerancia positiva. Por tanto, no se recomienda agregar más módulos en serie ni aprobar la configuración sin confirmar el límite absoluto de entrada FV del controlador.
+Para el banco de 24 V y un arreglo de 400 Wp, la potencia FV queda por debajo del límite nominal de 880 W indicado para operación a 24 V. La corriente de cortocircuito del arreglo en serie también queda por debajo del límite de 35 A.
+
+La conexión de dos módulos en serie es compatible de forma preliminar con el SmartSolar MPPT 100/30, siempre que no se agreguen más módulos en serie. El punto a vigilar sigue siendo la tensión máxima de circuito abierto: con el escenario de 10 °C y coeficiente térmico real del módulo, el arreglo podría alcanzar aproximadamente 94.82 V sin tolerancia de placa o 98.61 V considerando tolerancia positiva.
+
+## Configuración preliminar del controlador
+
+El controlador debe configurarse para el banco de baterías GEL de 24 V. La ficha del controlador permite valores ajustables de absorción y flotación, por lo que la configuración debe hacerse según los parámetros de la batería seleccionada.
+
+Para las baterías GEL Tensite 12 V 100 Ah conectadas en serie, se debe considerar:
+
+| Parámetro | Valor para una batería 12 V | Valor para banco 24 V |
+|---|---:|---:|
+| Tensión de carga en ciclos / absorción | 14.30–14.60 V | 28.60–29.20 V |
+| Tensión de flotación | 13.60–13.80 V | 27.20–27.60 V |
+| Corriente máxima de carga | 18 A | 18 A |
+
+Los valores predeterminados del SmartSolar para 24 V, 28.8 V en absorción y 27.6 V en flotación, se encuentran dentro de los rangos indicados por la ficha de la batería. Sin embargo, debe limitarse la corriente máxima de carga a 18 A para respetar la especificación del banco de baterías GEL. La ecualización debe mantenerse desactivada salvo indicación explícita del fabricante.
 
 ## Observación técnica
 
-Para mayor margen de seguridad, un controlador MPPT de 150 V sería más robusto. Sin embargo, el MPPT 100/30 puede considerarse compatible si se conectan únicamente dos módulos en serie, se trabaja con banco de 24 V y se mantiene como supuesto de diseño una temperatura mínima de celda no menor a 10 °C. Si se desea evaluar escenarios más conservadores, debe recalcularse el Voc corregido, ya que a temperaturas menores el arreglo puede aproximarse o superar el límite de 100 V.
+Para mayor margen de seguridad en tensión FV, un controlador MPPT de 150 V sería más robusto. Sin embargo, el SmartSolar MPPT 100/30 puede considerarse compatible para Lima si se conectan únicamente dos módulos en serie, se trabaja con banco de 24 V y se mantiene como supuesto de diseño una temperatura mínima de celda no menor a 10 °C. Si se desea evaluar escenarios más conservadores, debe recalcularse el Voc corregido.
