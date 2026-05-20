@@ -44,6 +44,25 @@ E_útil = 576 × η
 
 Para cálculos preliminares se puede usar η = 0.70 como caso base, lo que entrega aproximadamente 403 Wh/día útiles en el mes crítico. Este valor no debe entenderse como un límite fijo, sino como una referencia de diseño dependiente de la eficiencia real del sistema.
 
+## Banco de baterías seleccionado
+
+El banco previsto se compone de dos baterías Tensite GEL 12-100 conectadas en serie.
+
+| Parámetro | Valor |
+|---|---:|
+| Tipo de batería | GEL VRLA ciclo profundo |
+| Cantidad de baterías | 2 |
+| Tensión nominal por batería | 12 V |
+| Capacidad nominal por batería | 100 Ah a C100 |
+| Capacidad por batería a 10 h | 91 Ah |
+| Configuración | Serie |
+| Tensión nominal del banco | 24 V |
+| Capacidad nominal del banco | 100 Ah |
+| Energía nominal del banco | 24 V × 100 Ah = 2400 Wh |
+| Energía útil aproximada al 50 % DoD | 1200 Wh |
+
+En una conexión en serie se suma el voltaje, pero la capacidad en Ah se mantiene. Por ello, dos baterías de 12 V y 100 Ah en serie forman un banco de 24 V y 100 Ah, no un banco de 200 Ah.
+
 ## Autonomía objetivo
 
 Para el banco de baterías se adopta como criterio preliminar una autonomía de 1.5 días. Este valor permite cubrir periodos cortos de baja generación sin sobredimensionar excesivamente el almacenamiento.
@@ -81,17 +100,29 @@ Capacidad [Ah] ≈ 84.7 × η
 | 0.70 | 59.3 Ah @ 24 V |
 | 0.80 | 67.8 Ah @ 24 V |
 
-Con η = 0.70 como caso base, la capacidad mínima estimada es aproximadamente 59.3 Ah a 24 V. Por ello, un banco comercial de 24 V y 60 Ah resulta una configuración base razonable, siempre que el tipo de batería y sus parámetros de carga sean compatibles con el controlador seleccionado.
+Con η = 0.70 como caso base, la capacidad mínima estimada es aproximadamente 59.3 Ah a 24 V. El banco seleccionado de 24 V y 100 Ah supera este mínimo preliminar y proporciona mayor margen para cargas variables de proyectos Tech Lab.
+
+## Parámetros de carga de las baterías
+
+Según la ficha técnica de la batería GEL Tensite 12-100, los parámetros principales por unidad de 12 V son:
+
+| Parámetro | Valor por batería 12 V | Valor para banco 24 V |
+|---|---:|---:|
+| Tensión de carga en ciclos / absorción | 14.30–14.60 V | 28.60–29.20 V |
+| Tensión de flotación | 13.60–13.80 V | 27.20–27.60 V |
+| Corriente máxima de carga | 18 A | 18 A |
+| Corriente máxima de descarga | 900 A durante 5 s | 900 A durante 5 s |
+| Peso aproximado por batería | 26.2 kg ± 3 % | 52.4 kg ± 3 % total |
+
+La corriente máxima de carga del banco no se duplica al conectar las baterías en serie. Por ello, aunque el controlador Victron SmartSolar MPPT 100/30 pueda entregar hasta 30 A, debe configurarse una corriente máxima de carga de 18 A para respetar la especificación de las baterías GEL.
 
 ## Configuración del banco de baterías
 
-El banco debe configurarse a 24 V. Si se emplean baterías de 12 V, se requieren al menos dos unidades conectadas en serie:
+El banco debe configurarse a 24 V. La conexión prevista es:
 
 12 V + 12 V = 24 V
 
-En una conexión en serie se suma el voltaje, pero la capacidad en Ah se mantiene igual a la capacidad de cada batería. Por ejemplo, dos baterías de 12 V y 60 Ah conectadas en serie forman un banco de 24 V y 60 Ah.
-
-Si se requiere mayor capacidad, se pueden conectar ramas serie idénticas en paralelo. No se recomienda mezclar baterías de diferente tecnología, capacidad, antigüedad o estado de salud, ya que esto puede producir desbalances de carga y descarga.
+No se recomienda mezclar estas baterías nuevas con baterías antiguas u obsoletas, ni con baterías de diferente tecnología, capacidad o estado de salud. En caso de ampliación futura, las ramas en paralelo deberán estar formadas por baterías equivalentes y en condiciones similares.
 
 ## Comportamiento ante batería cargada
 
@@ -107,11 +138,8 @@ Como mejora futura, se puede evaluar el uso de cargas secundarias no críticas, 
 
 ## Pendientes
 
-- Confirmar modelo final del controlador MPPT solicitado.
-- Definir modelo final de baterías.
-- Confirmar si se comprará un banco nuevo de baterías.
-- Verificar estado de las baterías actualmente disponibles y descartar unidades obsoletas.
-- Definir cantidad de baterías y configuración serie/paralelo.
-- Verificar parámetros de carga recomendados por el fabricante: absorción, flotación, corriente máxima de carga y ecualización.
+- Configurar en el controlador el tipo de batería GEL o los parámetros manuales equivalentes.
+- Configurar corriente máxima de carga en 18 A.
+- Verificar si el perfil GEL del controlador coincide con los valores de la ficha Tensite.
 - Estimar potencia, tiempo de uso y energía diaria de cada proyecto que se conecte al SFA.
 - Verificar que cada carga conectada se mantenga dentro de la energía disponible y de los límites eléctricos del sistema.
