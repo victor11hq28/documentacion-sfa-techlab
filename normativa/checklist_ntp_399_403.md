@@ -27,26 +27,45 @@ Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión 
 
 ## Controlador de carga
 
+- [ ] Confirmar modelo exacto del controlador MPPT solicitado.
+- [ ] Adjuntar o registrar ficha técnica del controlador.
 - [ ] Verificar tensión nominal de operación.
 - [ ] Verificar corriente máxima de carga.
 - [ ] Verificar voltaje máximo de entrada FV.
 - [ ] Revisar potencia FV máxima admisible.
+- [ ] Validar compatibilidad con dos módulos de 200 W conectados en serie.
 - [ ] Revisar protección contra polaridad inversa.
 - [ ] Revisar protección contra sobrecorriente.
 - [ ] Revisar protección contra retorno de corriente.
-- [ ] Revisar valores de corte y reconexión.
-- [ ] Revisar señalización mediante LEDs o pantalla.
+- [ ] Revisar valores de absorción, flotación, corte y reconexión.
+- [ ] Revisar señalización mediante LEDs, pantalla o interfaz de configuración.
 
-**Nota:** Los controladores PWM disponibles fueron revisados preliminarmente y presentan limitaciones para un arreglo de 400 Wp. Se indicó que se solicitó un controlador Victron BlueSolar MPPT 100/30, por lo que la validación final queda pendiente hasta contar con el equipo o su ficha técnica completa.
+**Nota:** Los controladores PWM disponibles fueron revisados preliminarmente y presentan limitaciones para un arreglo de 400 Wp. Se indicó que se solicitó un controlador MPPT 100/30, por lo que la validación final queda pendiente hasta confirmar el modelo exacto y contar con su ficha técnica completa.
 
-## Baterías
+## Balance energético y banco de baterías
 
-- [ ] Verificar tipo de batería.
-- [ ] Registrar tensión nominal.
-- [ ] Registrar capacidad en Ah.
+- [x] Definir potencia FV instalada: 400 Wp.
+- [x] Definir HSP crítica de diseño: 1.44 h.
+- [x] Definir tensión nominal del banco: 24 V, por compatibilidad con el inversor Victron Phoenix 24/375.
+- [x] Definir autonomía objetivo preliminar: 1.5 días.
+- [x] Considerar que el excedente de verano será recortado por el controlador si la batería está cargada.
+- [ ] Confirmar consumo diario de la carga crítica.
+- [ ] Verificar tipo de batería final: AGM / GEL / litio / otra.
+- [ ] Definir si se comprará un banco nuevo de baterías.
+- [ ] Evaluar estado de las baterías actuales y descartar unidades obsoletas.
+- [ ] Registrar tensión nominal de cada batería.
+- [ ] Registrar capacidad nominal en Ah.
+- [ ] Definir cantidad de baterías.
+- [ ] Definir configuración del banco: serie / paralelo / serie-paralelo.
+- [ ] Calcular capacidad mínima final del banco en Ah.
+- [ ] Definir capacidad comercial del banco de baterías.
 - [ ] Verificar bornes positivo y negativo.
-- [ ] Revisar profundidad máxima de descarga.
-- [ ] Revisar recomendaciones de carga y flotación.
+- [ ] Revisar profundidad máxima de descarga recomendada.
+- [ ] Revisar corriente máxima de carga admisible.
+- [ ] Revisar recomendaciones de absorción, flotación y ecualización.
+- [ ] Evitar mezclar baterías nuevas con baterías antiguas u obsoletas.
+
+**Nota:** El banco de baterías debe ser de 24 V debido al uso del inversor Victron Phoenix 24/375. Si se emplean baterías de 12 V, se requiere al menos una conexión en serie de dos unidades. La capacidad final en Ah queda pendiente hasta confirmar el consumo diario de la carga crítica y el modelo de batería seleccionado.
 
 ## Cableado y protecciones
 
