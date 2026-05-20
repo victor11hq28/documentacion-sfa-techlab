@@ -15,7 +15,7 @@ Checklist preliminar para verificar componentes del SFA de 400 Wp. La revisión 
 - [x] Registrar coeficiente térmico de Voc: -0.29506 %/°C.
 - [x] Registrar coeficiente térmico de Pmax: -0.38001 %/°C.
 - [x] Registrar coeficiente térmico de Isc: +0.08558 %/°C.
-- [ ] Registrar número de serie del panel 1.
+- [x] Registrar número de serie del panel 1: AS00210400054.
 - [ ] Registrar número de serie del panel 2.
 - [x] Revisar estado físico del módulo: paneles nuevos, sin daños visibles reportados.
 - [x] Revisar características de conexión: caja de conexiones y conectores tipo MC4.
